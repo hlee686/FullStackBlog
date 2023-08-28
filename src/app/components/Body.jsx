@@ -13,8 +13,14 @@ export default function Body(){
     showPosts()
   },[])
   return (
-    <div>
-      {dataList.map((item,idx)=><img src={item.imgSrc} key={idx}/>)}
+    <div style={{display: "flex", marginTop: "200px"}}>
+      {dataList.map((item,idx)=>
+      <div key={idx} style={{marginRight: "30px", width: "240px", height: "300px", backgroundColor: "white", border: "1px solid black", borderRadius: "20px"}}>
+        <img style={{width: "230px", height: "150px"}} src={item.imgSrc[0]}/>
+        <p>{item.title}</p>
+        <p>{item.contents}</p>
+        <p>{item.timestamp}</p>
+      </div>)}
     </div>
   )
 }

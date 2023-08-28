@@ -47,6 +47,7 @@ export default function Write(){
   const [title, setTitle] = useState('')
   const [keywords, setKeywords] = useState([])
   const [contents, setContents] = useState('')
+  const timestamp = new Date().toISOString();
 
   const sendPost = async() => {
     
@@ -55,7 +56,7 @@ export default function Write(){
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, keywords, contents, imgSrc }),
+      body: JSON.stringify({ title, keywords, contents, imgSrc, timestamp }),
     });
     if (res.ok) {
       const json = await res.json();
@@ -78,7 +79,7 @@ export default function Write(){
       /></div>
       <div><input type="file" onChange={handleImageChange} accept="image/*" multiple /></div>
       <button onClick={handleUpload}>업로드</button>
-      <div><textarea name="contents" rows="4" cols="50" onClick={e=>setContents(e.target.value)}></textarea></div>
+      <div><textarea name="contents" rows="4" cols="50" onChange={e=>setContents(e.target.value)}></textarea></div>
       <button onClick={sendPost}>출간하기</button>
     </div>
   )
